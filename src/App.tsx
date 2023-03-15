@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DatePicker from './components/DatePicker';
 import './App.css';
 
 interface AppProps {}
@@ -21,6 +22,7 @@ const App: React.FC<AppProps> = () => {
     getFormattedDate(new Date())
   );
   //Format of blackout dates strings in array should be: MM/DD/YYYY, testing with 2 dates for now
+  // eslint-disable-next-line
   const [blackoutDates, setBlackoutDates] = useState<string[]>([
     '03/16/2023',
     '03/30/2023',
@@ -38,7 +40,14 @@ const App: React.FC<AppProps> = () => {
   };
 
   return (
-    <div className='App'>// TO DO: Add the date picker component here.</div>
+    <div className='App'>
+      <DatePicker
+        selectedDate={selectedDate}
+        onDateChange={onDateChange}
+        onDatePick={onDatePick}
+        blackoutDates={blackoutDates}
+      />
+    </div>
   );
 };
 
