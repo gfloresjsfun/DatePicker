@@ -129,8 +129,25 @@ const DatePicker = ({
     return blackoutDates.includes(dateString);
   };
 
+  // Check if a date is valid
+  const isValidDate = (dateString: string) => {
+    const dateRegex = /^(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])\/\d{4}$/;
+    if (!dateRegex.test(dateString)) {
+      return false;
+    }
+    return true;
+  };
+
   return (
     <div className='date-picker'>
+      <div className='invalid-date'>
+        {
+          // Show the invalid date message if the date is invalid
+          !isValidDate(selectedDate) && (
+            <span>Invalid date format, should be MM/DD/YYYY</span>
+          )
+        }
+      </div>
       <div className='date-picker-input'>
         <input
           type='text'
